@@ -12,7 +12,10 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    if(!element){
+      throw new Error('Передан пустой элемент')
+    }
+    this.element = element
   }
 
   /**
@@ -23,6 +26,10 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-
+    let user = User.current()
+    if(user){
+      let name = document.querySelector('.user-name')
+      name.textContent = user.name
+    }
   }
 }

@@ -13,7 +13,7 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-
+    Other.initElemAndEvents(element, this)
   }
 
   /**
@@ -21,7 +21,10 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-
+    this.element.onsubmit = e => {
+      e.preventDefault()
+      this.submit()
+    }
   }
 
   /**
@@ -32,7 +35,14 @@ class AsyncForm {
    * }
    * */
   getData() {
-
+    let elems = this.element.elements
+    let data = {}
+    for(let elem of elems){
+      if(elem.name){
+        data[elem.name] = this.convertToSafeChar(elem.value)
+      }
+    }
+    return data
   }
 
   onSubmit(options){
@@ -44,6 +54,17 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-
+    let options = this.getData()
+    this.onSubmit(options)
   }
+
+  convertToSafeChar(str) {
+    str = str.replace(/&/g, "&amp;");
+    str = str.replace(/>/g, "&gt;");
+    str = str.replace(/</g, "&lt;");
+    str = str.replace(/"/g, "&quot;");
+    str = str.replace(/'/g, "&#039;");
+    return str;
+  }
+
 }

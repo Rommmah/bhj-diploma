@@ -98,7 +98,7 @@
                 <h1>
                     <span class="content-title">Название счёта</span>
                     <small class="content-description">Счёт</small>
-                    <button class="btn btn-danger remove-account">
+                    <button class="btn btn-danger remove-account" disabled>
                         <span class="fa fa-trash"></span>
                         Удалить счёт
                     </button>
@@ -254,6 +254,52 @@
         </div>
     </div>
 
+    <div class="modal fade in" id="modal-message" data-modal-id="message">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Нет активных счетов</h4>
+                </div>
+                <div class="modal-body">
+                    Создать новый счёт?
+                </div>
+                <div class="modal-footer">
+                    <form class="form" id="new-accountFromMessage-form">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" form="new-accountFromMessage-form">Создать</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="modal-confirmDeletion" data-modal-id="confirmDeletion">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Подтвердите действие</h4>
+                </div>
+                <div class="modal-body">
+                    Удалить выбранный счёт?
+                </div>
+                <div class="modal-footer">
+                    <form class="form" id="new-confirmDeletion-form">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" form="new-confirmDeletion-form">Удалить</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/api/createRequest.js"></script>
     <script src="js/api/Entity.js"></script>
@@ -272,10 +318,14 @@
     <script src="js/ui/forms/LoginForm.js"></script>
     <script src="js/ui/forms/RegisterForm.js"></script>
     <script src="js/ui/forms/CreateAccountForm.js"></script>
+    <script src="js/ui/forms/CreateAccountFromMessageForm.js"></script>
     <script src="js/ui/forms/CreateTransactionForm.js"></script>
+    <script src="js/ui/forms/ConfirmDeletionForm.js"></script>
 
     <script src="js/ui/Sidebar.js"></script>
     <script src="js/App.js"></script>
+
+    <script src="js/Other.js"></script>
 
     <script>
       App.init();

@@ -54,6 +54,8 @@ class App {
       createAccount: new Modal(document.querySelector("#modal-new-account")),
       newIncome: new Modal(document.querySelector("#modal-new-income")),
       newExpense: new Modal(document.querySelector("#modal-new-expense")),
+      message: new Modal(document.querySelector("#modal-message")),
+      confirmDeletion: new Modal(document.querySelector("#modal-confirmDeletion")),
     };
   }
 
@@ -85,6 +87,12 @@ class App {
       ),
       createExpense: new CreateTransactionForm(
         document.querySelector("#new-expense-form")
+      ),
+      createAccountFromMessageForm: new CreateAccountFromMessageForm(
+        document.querySelector("#new-accountFromMessage-form")
+      ),
+      confirmDeletion: new ConfirmDeletionForm(
+        document.querySelector("#new-confirmDeletion-form")
       ),
     };
   }

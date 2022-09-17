@@ -37,10 +37,13 @@ router.delete("/", upload.none(), function(request, response) {
     const db = low(new FileSync('db.json'));// получение БД
     let accounts = db.get("accounts");// получение списка счетов
     let transactions = db.get("transactions");// получение списка счетов
-    let removingAccount = accounts.find({id: request.body.id}).value();// нахождение нужного удаляемого счёта
+    let removingAccount = accounts.find({id: request.body.account_id}).value();// Изменил на account_id
+    // let removingAccount = accounts.find({id: request.body.id}).value();// нахождение нужного удаляемого счёта
     if(removingAccount){// если удаляемый аккаунт существует
-        accounts.remove({id: request.body.id}).write();// удалить и перезаписать аккаунт
-        transactions.remove({account_id: request.body.id}).write(); // удалить связанные транзакции и перезаписать
+        accounts.remove({id: request.body.account_id}).write();// Изменил на account_id
+        transactions.remove({account_id: request.body.account_id}).write(); // Изменил на account_id
+        // accounts.remove({id: request.body.id}).write();// удалить и перезаписать аккаунт
+        // transactions.remove({account_id: request.body.id}).write(); // удалить связанные транзакции и перезаписать
         response.json({success: true});// отправка ответа успешности
     }else{// если аккаунта нету
         response.json({success: false});// отправка ответа неуспешности

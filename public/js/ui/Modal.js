@@ -12,7 +12,7 @@ class Modal {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    Other.initElemAndEvents(element, this)
   }
 
   /**
@@ -21,7 +21,17 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-
+    let btns = this.element.querySelectorAll('[data-dismiss="modal"]')
+    for(let btn of btns){
+      btn.onclick = e => {
+        this.onClose(e)
+      }
+      document.addEventListener('keydown', e => {
+        if(e.code == 'Escape' && this.element.style.display){
+          this.onClose(e)
+        }
+      })
+    }
   }
 
   /**
@@ -29,19 +39,24 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-
+    this.close()
+    e.preventDefault()
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display
    * со значением «block»
    * */
   open() {
-
+    this.element.style.display = 'block'
+    const input = this.element.querySelector('input:not([type=hidden])')
+    if(input){
+      input.focus()      
+    }
   }
   /**
    * Закрывает окно: удаляет CSS-свойство display
    * */
   close(){
-
+    this.element.style.display = ''
   }
 }
