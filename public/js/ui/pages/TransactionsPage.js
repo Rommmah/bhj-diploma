@@ -18,7 +18,7 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    const options = this.lastOptions ? this.lastOptions : User.current()
+    const options = this.lastOptions || User.current()
     this.render(options)
   }
 
@@ -32,10 +32,7 @@ class TransactionsPage {
     const removeAccBtn = document.querySelector('.remove-account')
     removeAccBtn.onclick = e => {
       e.preventDefault()
-      // if(document.querySelector('.account.active')){
-        // this.removeAccount()
-      // }
-      let aa = App.modals.confirmDeletion.open()
+      App.getModal('confirmDeletion').open()
     }
 
     const removeTransactionBtns = document.querySelectorAll('.transaction__remove')
@@ -185,22 +182,22 @@ class TransactionsPage {
       <div class="transaction ${className}">
         <div class="col-md-7 transaction__details">
           <div class="transaction__icon">
-              <span class="fa fa-money fa-2x"></span>
+            <span class="fa fa-money fa-2x"></span>
           </div>
           <div class="transaction__info">
-              <h4 class="transaction__title">${item.name}</h4>
-              <div class="transaction__date">${date}</div>
+            <h4 class="transaction__title">${item.name}</h4>
+            <div class="transaction__date">${date}</div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="transaction__summ">
-              ${item.sum} <span class="currency">₽</span>
+            ${item.sum} <span class="currency">₽</span>
           </div>
         </div>
         <div class="col-md-2 transaction__controls">
-            <button class="btn btn-danger transaction__remove" data-id="${item.id}">
-                <i class="fa fa-trash"></i>  
-            </button>
+          <button class="btn btn-danger transaction__remove" data-id="${item.id}">
+            <i class="fa fa-trash"></i>  
+          </button>
         </div>
       </div>  
     `
@@ -213,12 +210,6 @@ class TransactionsPage {
   renderTransactions(data){
     const content = document.querySelector('.content')
 
-    while (content.firstChild) {
-        content.removeChild(content.firstChild);
-    }
-
-    for(let item of data){
-      content.insertAdjacentHTML('beforeEnd', this.getTransactionHTML(item))
-    }
+    content.innerHTML = data.reduce( (prev, cur) => prev + this.getTransactionHTML(cur), '')
   }
 }

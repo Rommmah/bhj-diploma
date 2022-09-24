@@ -10,7 +10,6 @@ class RegisterForm extends AsyncForm {
    * и закрывает окно, в котором находится форма
    * */
   onSubmit(data) {
-    console.log(data)
     User.register(data, (err, resp) => {
       if(err){
         Other.removeMessage(this.element)
@@ -19,8 +18,7 @@ class RegisterForm extends AsyncForm {
         this.element.reset();
         Other.removeMessage(this.element)
         App.setState( 'user-logged' );
-        let modal = new Modal(this.element.closest('.modal'))
-        modal.close()
+        App.getModal('register').close()
       }
     })
 

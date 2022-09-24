@@ -25,21 +25,9 @@ class CreateTransactionForm extends AsyncForm {
         }
 
         if(resp?.success){
-          const selectList = document.querySelectorAll('.accounts-select')
+          const selectList = this.element.querySelector('.accounts-select')
 
-          for(let select of selectList){
-
-            while (select.firstChild) {
-                select.removeChild(select.firstChild);
-            }
-
-            for(let data of resp.data){
-              let option = new Option(data.name, data.id)
-              select.append(option)
-            }    
-
-          }
-
+          selectList.innerHTML = resp.data.reduce( (prev, cur) => prev + `<option value="${cur.id}">${cur.name}</option>`, '')
         }
 
       })
@@ -61,8 +49,8 @@ class CreateTransactionForm extends AsyncForm {
       if(resp?.success){
         this.element.reset();
         Other.removeMessage(this.element)
-        let modal = new Modal(this.element.closest('.modal'))
-        modal.close()
+        App.getModal('newIncome').close()
+        App.getModal('newExpense').close()
         App.update();
       }
     })

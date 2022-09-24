@@ -64,7 +64,7 @@ class AsyncForm {
     str = str.replace(/</g, "&lt;");
     str = str.replace(/"/g, "&quot;");
     str = str.replace(/'/g, "&#039;");
-    return str;
+    return str.trim();
   }
 
 }

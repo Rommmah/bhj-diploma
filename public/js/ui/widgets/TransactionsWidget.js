@@ -27,7 +27,7 @@ class TransactionsWidget {
         if(resp.data.length){
           App.getModal('newIncome').open()
         } else {
-          App.modals.message.open()
+          App.getModal('message').open()
         }
       })
     }
@@ -38,7 +38,7 @@ class TransactionsWidget {
         if(resp.data.length){
           App.getModal('newExpense').open()
         } else {
-          App.modals.message.open()
+          App.getModal('message').open()
         }
       })
     }

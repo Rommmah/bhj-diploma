@@ -18,8 +18,7 @@ class CreateAccountForm extends AsyncForm {
         this.element.reset();
         Other.removeMessage(this.element)
         App.update();
-        let modal = new Modal(this.element.closest('.modal'))
-        modal.close()
+        App.getModal('createAccount').close()
       }
     })
   }

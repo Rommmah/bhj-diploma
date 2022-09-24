@@ -28,7 +28,7 @@ class AccountsWidget {
   registerEvents() {
     const createBtn = document.querySelector('.create-account')
     createBtn.onclick = e => {
-      const modal = App.modals.createAccount
+      const modal = App.getModal('createAccount')
       modal.open()
       modal.element.querySelector('input').focus()
     }
