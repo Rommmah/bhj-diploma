@@ -17,8 +17,7 @@ class ConfirmDeletionForm extends AsyncForm {
     })    
   }
 
-  submit(e){
-    e.preventDefault()
+  submit(){
     App.getModal('confirmDeletion').close()
     App.pages.transactions.removeAccount()
     document.querySelector('.remove-account').disabled = true

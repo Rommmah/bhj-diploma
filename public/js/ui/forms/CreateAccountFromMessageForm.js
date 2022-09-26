@@ -17,8 +17,7 @@ class CreateAccountFromMessageForm extends AsyncForm {
     })    
   }
 
-  submit(e){
-    e.preventDefault()
+  submit(){
     App.getModal('message').close()
     App.getModal('createAccount').open()
   }
